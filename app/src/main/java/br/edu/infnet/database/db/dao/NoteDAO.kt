@@ -1,4 +1,4 @@
-package br.edu.infnet.database.dao
+package br.edu.infnet.database.db.daoInsert
 
 import androidx.room.*
 import br.edu.infnet.database.entity.Note
@@ -13,7 +13,7 @@ interface NoteDAO {
     fun destroy(note: Note)
 
     @Query("SELECT *FROM note")
-    fun findAll(): Array<Note>
+    fun findAll(): List<Note>
 
     @Query("SELECT *FROM note WHERE id = :id")
     fun findBy(id: Int):Note

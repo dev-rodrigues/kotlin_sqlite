@@ -1,8 +1,8 @@
 package br.edu.infnet.database.configuration
 
-import android.content.Context
-import androidx.room.*
-import br.edu.infnet.database.dao.NoteDAO
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import br.edu.infnet.database.db.daoInsert.NoteDAO
 import br.edu.infnet.database.entity.Note
 
 @Database(
@@ -13,24 +13,4 @@ import br.edu.infnet.database.entity.Note
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun noteDAO(): NoteDAO
-
-    companion object {
-
-        @Volatile
-        private var INSTANCE: AppDatabase ?= null
-
-        fun getInstance(context: Context):AppDatabase {
-            if (INSTANCE == null) {
-                INSTANCE = Room.databaseBuilder(
-                    context,
-                    AppDatabase::class.java,
-                    "appDatabase.bd"
-                )
-                    .allowMainThreadQueries()
-                    .build()
-            }
-            return INSTANCE!!
-        }
-
-    }
 }
